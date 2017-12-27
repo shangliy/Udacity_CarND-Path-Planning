@@ -11,6 +11,7 @@ In this project your goal is to safely navigate around a virtual highway with ot
 
 ## Valid Trajectories
 [OK]The top right screen of the simulator shows the current/best miles driven without incident. Incidents include exceeding acceleration/jerk/speed, collision, and driving outside of the lanes. 
+![drawing](https://github.com/shangliy/Udacity_CarND-Path-Planning/blob/master/car_screen.png?raw=true)
 [OK] The car doesn't drive faster than the speed limit. Also the car isn't driving much slower than speed limit unless obstructed by traffic.
 [OK]The car does not exceed a total acceleration of 10 m/s2 and a jerk of 10 m/s3.
 [OK]The car must not come into contact with any of the other cars on the road.
@@ -23,6 +24,7 @@ In this project your goal is to safely navigate around a virtual highway with ot
 1. Work Flow
 The total work flow shown in Figure Below;
 It includes two parts: **Behavior Plan** & **Path Generation**
+![flow](https://github.com/shangliy/Udacity_CarND-Path-Planning/blob/master/udacity_pathplan.jpg?raw=true)
 
 2. Behavior Plan
 This part is to answer **two questions**:
