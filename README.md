@@ -35,28 +35,28 @@ This part is to answer **two questions**:
  > - If the current lane is not safem we need to check if other lane safe,:
  >> - if no safe lane, we will keep the lane and decrease the ref_speed;
  >> - If exist safe lane and the current lane is 0 or 2m,we will switch the lane to 1; else, we switch to the lane with smaller cost;
->>> - The cost is the minus minimum absolute distance between  the other car and our car within same lane; In other words, we want to switch the the lane with larger distance to other cars(safe);
->>> **// The lane status flags and cost array
-	vector<bool> lane_notsafe = {false, false, false};
-	vector<double> lane_cost = {0, 0, 0};**
+>>> - The cost is the minus minimum absolute distance between  the other car and our car within same lane; In other words, we want to switch the the lane with larger distance to other cars(safe);\
+>>> **// The lane status flags and cost array\
+>>>	vector<bool> lane_notsafe = {false, false, false};\
+>>>	vector<double> lane_cost = {0, 0, 0};**\
 
 3. Path Generation
 This part is to generate several points which correspond to our next path;
 > - Use last Pre_loc, current location and next three target location (**Defined by the lane**) as the sample points, **transfer them the car coordinate**;
 
->> ref_x = previous_path_x[prev_size - 1];
->>ref_y = previous_path_y[prev_size - 1];
->> double ref_x_pre = previous_path_x[prev_size - 2];
->> double ref_y_pre = previous_path_y[prev_size - 2];
->> vector<double> next_wp0 = getXY(car_s + 30, (2 + 4*cur_lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
->> vector<double> next_wp1 = getXY(car_s + 60, (2 + 4*cur_lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
->> vector<double> next_wp2 = getXY(car_s + 90, (2 + 4*cur_lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
+>> ref_x = previous_path_x[prev_size - 1]; \
+>>ref_y = previous_path_y[prev_size - 1]; \
+>> double ref_x_pre = previous_path_x[prev_size - 2];\
+>> double ref_y_pre = previous_path_y[prev_size - 2];\
+>> vector<double> next_wp0 = getXY(car_s + 30, (2 + 4*cur_lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);\
+>> vector<double> next_wp1 = getXY(car_s + 60, (2 + 4*cur_lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);\
+>> vector<double> next_wp2 = getXY(car_s + 90, (2 + 4*cur_lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);\
 
 > - Use **spline lib** and the  **five points** to fit the function **F**;
 >> s.set_points(ptsx, ptsy);
 > - According to the **Ref_speed** and the **target destination**, we sample seveal x and use the function f to caculate the F to get corresponding y, which make the generated next path points;
->> double x_point = x_add_on + (target_x)/N;
-      double y_point = s(x_point);
+>> double x_point = x_add_on + (target_x)/N;\
+>> double y_point = s(x_point);\
 > - Add Left pre_path points and New generated point to the next path array;
 > - Send the next path arrat;
 
